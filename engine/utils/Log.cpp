@@ -20,8 +20,8 @@ namespace Log
             auto dt = std::put_time(std::localtime(&now_c), "%F %T");
 
             std::fstream file("engine_log.txt", std::ios::out | std::ios::app);
-            file << dt << "\t" << message << " (" << Time::fps() << " fps)" << std::endl;
-            std::cout << dt << "\t" << message << " (" << Time::fps() << " fps)" << std::endl;
+            file << dt << "\t" << message << std::endl;
+            std::cout << dt << "\t" << message << std::endl;
             file.close();
         }
     }
