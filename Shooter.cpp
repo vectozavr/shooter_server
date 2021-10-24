@@ -39,8 +39,5 @@ void Shooter::start() {
 
 void Shooter::update() {
     // This code executed every time step:
-
-    if((Time::time() - lastUpdateTime) > ShooterConsts::SERVER_UPDATE_RATE) {
-        server->update();
-    }
+    server->update();
 }
