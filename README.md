@@ -12,9 +12,9 @@ Server for [3D shooter](https://github.com/vectozavr/shooter)
 
 <h4>Commands:</h4>
 
- - type <b>q</b> if you want to exit the server
+ - type <b>q</b> to exit the server
 
- - type <b>r</b> if you want to restart the server
+ - type <b>r</b> to restart the server
 
 Playing with source code:
 

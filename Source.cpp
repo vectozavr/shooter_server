@@ -39,8 +39,8 @@ int main() {
     Log::log("Initializing the server...");
     InitServer(server);
 
-    std::cout << "Type 'q' if you want to exit the server" << std::endl;
-    std::cout << "Type 'r' if you want to restart the server" << std::endl;
+    std::cout << "Type 'q' to exit the server" << std::endl;
+    std::cout << "Type 'r' to restart the server" << std::endl;
 
     while (true) {
         char command;
