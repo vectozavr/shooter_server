@@ -2,6 +2,12 @@
 
 <h4>About:</h4>
 
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://choosealicense.com/licenses/mit/)
+[![Community Discord](https://img.shields.io/discord/788056426324426782.svg?label=discord&logo=discord)](https://discord.gg/NzSf5tyS)
+![Commits](https://img.shields.io/github/last-commit/vectozavr/shooter_server)
+![Issues](https://img.shields.io/bitbucket/issues-raw/vectozavr/shooter_server)
+![Repo size](https://img.shields.io/github/repo-size/vectozavr/shooter_server)
+
 Server for [3D shooter](https://github.com/vectozavr/shooter)
 
 1) Write <b>port</b> of the server in <b>server.txt</b> file.
