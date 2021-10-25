@@ -9,6 +9,7 @@
 #include "engine/utils/Time.h"
 #include "engine/utils/Log.h"
 #include "engine/Keyboard.h"
+#include "engine/Consts.h"
 
 using namespace std;
 
@@ -41,6 +42,8 @@ int main() {
     Log::log("Initializing the server...");
     InitServer(server);
 
+    double lastTryReconnecting = 0;
+
     if(server.isWorking())
         std::cout << "Type 'q' to exit the server" << std::endl;
     std::cout << "Type 'r' to restart the server" << std::endl;
@@ -51,6 +54,13 @@ int main() {
             break;
         }
         if(keyboard.isKeyTapped(sf::Keyboard::Key::R)) {
+            server.stop();
+            Log::log("Restarting the server...");
+            InitServer(server);
+        }
+
+        if(!server.isWorking() && (Time::time() - lastTryReconnecting > Consts::NETWORK_TIMEOUT)) {
+            lastTryReconnecting = Time::time();
             server.stop();
             Log::log("Restarting the server...");
             InitServer(server);
