@@ -7,7 +7,6 @@
 
 #include "engine/network/ServerUDP.h"
 #include "Player.h"
-#include "Bonus.h"
 
 struct BonusInfo final {
     const Vec3D position{};

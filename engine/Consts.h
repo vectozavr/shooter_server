@@ -8,12 +8,7 @@
 
 
 namespace Consts {
-    const int STANDARD_SCREEN_WIDTH = 1920;
-    const int STANDARD_SCREEN_HEIGHT = 1920;
-    const std::string PROJECT_NAME = "engine";
     const bool USE_LOG_FILE = true;
-    const bool USE_OPEN_GL = true;
-    const bool SHOW_COORDINATES = true;
 
     const double LARGEST_TIME_STEP = 1.0/15.0;
 

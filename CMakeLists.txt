@@ -12,31 +12,19 @@ add_executable(shooter_server
         Player.h
         Server.cpp
         Server.h
-        Bonus.cpp
-        Bonus.h
-        Shooter.cpp
-        Shooter.h
         ShooterConsts.h
         # 3d engine:
         engine/Consts.h
         engine/Vec3D.cpp
         engine/Vec3D.h
-        engine/Vec2D.cpp
-        engine/Vec2D.h
         engine/Mesh.h
-        engine/Mesh.cpp
         engine/utils/Log.h
         engine/utils/Log.cpp
         engine/utils/Time.h
         engine/utils/Time.cpp
-        engine/Engine.h
-        engine/Engine.cpp
-        engine/physics/RigidBody.cpp
         engine/physics/RigidBody.h
         engine/Object.cpp
         engine/Object.h
-        engine/network/ClientUDP.cpp
-        engine/network/ClientUDP.h
         engine/network/MsgType.cpp
         engine/network/MsgType.h
         engine/network/ReliableMsg.cpp
@@ -62,7 +50,7 @@ if (SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
 endif()
 
-target_link_libraries(shooter_server sfml-audio sfml-network sfml-graphics sfml-window sfml-system)
+target_link_libraries(shooter_server sfml-network)
 
 # OpenGL part for MacOS
 if (APPLE OR UNIX)

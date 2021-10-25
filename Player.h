@@ -21,7 +21,7 @@ private:
     int _kills = 0;
     int _deaths = 0;
 public:
-    Player();
+    Player() = default;
 
     void setHealth(double h) { _health = h; }
     void setAbility(double a) { _ability = a; }
@@ -30,8 +30,8 @@ public:
     [[nodiscard]] double ability() const { return _ability; }
 
 
-    void setFullHealth();
-    void setFullAbility();
+    void setFullHealth() { _health = ShooterConsts::HEALTH_MAX; }
+    void setFullAbility() { _ability = ShooterConsts::ABILITY_MAX; }
 
     [[nodiscard]] int kills() const { return _kills; }
     [[nodiscard]] int deaths() const { return _deaths; }

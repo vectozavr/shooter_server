@@ -5,7 +5,6 @@
 #include "ServerUDP.h"
 #include "MsgType.h"
 #include "../utils/Log.h"
-#include <cmath>
 #include "../utils/Time.h"
 #include "../Consts.h"
 
@@ -24,9 +23,9 @@ bool ServerUDP::start(sf::Uint16 port)
     _working = _socket.bind(port);
 
     if(_working)
-        Log::log("ServerUDP: server successfully started.");
+        Log::log("ServerUDP::start(): the server was successfully started.");
     else
-        Log::log("ServerUDP: failed to start the server.");
+        Log::log("ServerUDP::start(): failed to start the server.");
 
     return _working;
 }
@@ -65,7 +64,7 @@ void ServerUDP::stop()
 
     processStop();
 
-    Log::log("ServerUDP: the server was killed.");
+    Log::log("ServerUDP::stop(): the server was killed.");
 }
 
 bool ServerUDP::timeout(sf::Uint16 playerId)
@@ -78,7 +77,7 @@ bool ServerUDP::timeout(sf::Uint16 playerId)
     for (auto client : _clients)
         _socket.sendRely(packet, client);
 
-    Log::log("ServerUDP: client Id = " + std::to_string(playerId) + " disconnected due to timeout.");
+    Log::log("ServerUDP::timeout(): client Id = " + std::to_string(playerId) + " disconnected due to timeout.");
     processDisconnect(playerId);
 
     return true;
@@ -101,7 +100,7 @@ bool ServerUDP::process()
         // here we process any operations based on msg type
         case MsgType::Connect:
 
-            Log::log("ServerUDP: client Id = " + std::to_string(senderId) + " connecting...");
+            Log::log("ServerUDP::process(): client Id = " + std::to_string(senderId) + " connecting...");
 
             processConnect(senderId);
             break;
@@ -110,7 +109,7 @@ bool ServerUDP::process()
             processClientUpdate(senderId, packet);
             break;
         case MsgType::Disconnect:
-            Log::log("ServerUDP: client Id = " + std::to_string(senderId) + " disconnected.");
+            Log::log("ServerUDP::process(): client Id = " + std::to_string(senderId) + " disconnected.");
 
             sendPacket << MsgType::Disconnect << senderId;
             _clients.erase(senderId);

@@ -12,7 +12,7 @@
 class Mesh : public Object {
 public:
     Mesh() = default;
-    ~Mesh() override;
+    ~Mesh() override = default;
 };
 
 #endif //INC_3DZAVR_MESH_H
