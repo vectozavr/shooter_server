@@ -10,6 +10,7 @@
 namespace Consts {
     const bool USE_LOG_FILE = true;
 
+    const double TAP_DELAY = 0.2;
     const double LARGEST_TIME_STEP = 1.0/15.0;
 
     const unsigned NETWORK_VERSION = 1U;

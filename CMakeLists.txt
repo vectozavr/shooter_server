@@ -18,6 +18,8 @@ add_executable(shooter_server
         engine/Vec3D.cpp
         engine/Vec3D.h
         engine/Mesh.h
+        engine/Keyboard.cpp
+        engine/Keyboard.h
         engine/utils/Log.h
         engine/utils/Log.cpp
         engine/utils/Time.h
@@ -50,7 +52,7 @@ if (SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
 endif()
 
-target_link_libraries(shooter_server sfml-network)
+target_link_libraries(shooter_server sfml-graphics sfml-network)
 
 # OpenGL part for MacOS
 if (APPLE OR UNIX)

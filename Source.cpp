@@ -8,6 +8,7 @@
 #include "Server.h"
 #include "engine/utils/Time.h"
 #include "engine/utils/Log.h"
+#include "engine/Keyboard.h"
 
 using namespace std;
 
@@ -34,22 +35,22 @@ void InitServer(Server& server)
 
 int main() {
     Time::init();
+    Keyboard keyboard;
     Server server{};
 
     Log::log("Initializing the server...");
     InitServer(server);
 
-    std::cout << "Type 'q' to exit the server" << std::endl;
+    if(server.isWorking())
+        std::cout << "Type 'q' to exit the server" << std::endl;
     std::cout << "Type 'r' to restart the server" << std::endl;
 
     while (true) {
-        char command;
-        std::cin >> command;
-        if(command == 'q') {
+        if(keyboard.isKeyTapped(sf::Keyboard::Key::Q)) {
             Time::free();
             break;
         }
-        if(command == 'r') {
+        if(keyboard.isKeyTapped(sf::Keyboard::Key::R)) {
             server.stop();
             Log::log("Restarting the server...");
             InitServer(server);
