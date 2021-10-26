@@ -11,6 +11,8 @@ namespace ShooterConsts {
     const double HEALTH_MAX = 100;
     const double ABILITY_MAX = 10;
     const double BONUS_RECHARGE_TIME = 30;
+
+    const std::string PLAYER_NAME = "Player";
 }
 
 #endif //SHOOTER_SHOOTERCONSTS_H

@@ -10,8 +10,8 @@ void Server::broadcast() {
     sf::Packet updatePacket;
     updatePacket << MsgType::Update;
 
-    for (auto& player : _players) {
-        updatePacket << player.first << player.second->position().x() << player.second->position().y() << player.second->position().z() << player.second->health() << player.second->angle().y() << player.second->headAngle();
+    for (auto& [playerId, player] : _players) {
+        updatePacket << playerId << player->position().x() << player->position().y() << player->position().z() << player->health() << player->angle().y() << player->headAngle() << player->playerName();
     }
 
     for (auto& player : _players) {
@@ -28,11 +28,11 @@ void Server::processConnect(sf::Uint16 targetId) {
     extraPacket << MsgType::NewClient << targetId;
     sendPacket1 << MsgType::Init << targetId;
     _players.insert({ targetId, std::make_shared<Player>() });
-    for (const auto& player : _players)
+    for (const auto& [playerId, player] : _players)
     {
-        sendPacket1 << player.first << player.second->position().x() << player.second->position().y() << player.second->position().z() << player.second->health();
-        if (player.first != targetId)
-            _socket.sendRely(extraPacket, player.first);
+        sendPacket1 << playerId << player->position().x() << player->position().y() << player->position().z() << player->health() << player->kills() << player->deaths();
+        if (playerId != targetId)
+            _socket.sendRely(extraPacket, playerId);
     }
     _socket.sendRely(sendPacket1, targetId);
 
@@ -48,11 +48,13 @@ void Server::processConnect(sf::Uint16 targetId) {
 
 void Server::processClientUpdate(sf::Uint16 senderId, sf::Packet& packet) {
     double buf[5];
+    std::string playerName;
 
-    packet >> buf[0] >> buf[1] >> buf[2] >> buf[3] >> buf[4];
+    packet >> buf[0] >> buf[1] >> buf[2] >> buf[3] >> buf[4] >> playerName;
     _players.at(senderId)->translateToPoint(Vec3D{ buf[0], buf[1], buf[2] });
     _players.at(senderId)->rotateToAngle(Vec3D{0, buf[3], 0});
     _players.at(senderId)->setHeadAngle(buf[4]);
+    _players.at(senderId)->setPlayerName(playerName);
 }
 
 void Server::processDisconnect(sf::Uint16 senderId) {

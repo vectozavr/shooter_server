@@ -20,6 +20,8 @@ private:
 
     int _kills = 0;
     int _deaths = 0;
+
+    std::string _name = ShooterConsts::PLAYER_NAME;
 public:
     Player() = default;
 
@@ -36,12 +38,18 @@ public:
     [[nodiscard]] int kills() const { return _kills; }
     [[nodiscard]] int deaths() const { return _deaths; }
 
+    void setKills(int kills) { _kills = kills; }
+    void setDeaths(int deaths) { _deaths = deaths; }
+
     void addKill() { _kills++; }
     void addDeath() { _deaths++; }
 
     // This is for situation when you want to store the position of the head but you dont have attached camera
     void setHeadAngle(double a) { _headAngle = a; }
     [[nodiscard]] double headAngle() const { return _headAngle; };
+
+    [[nodiscard]] std::string playerName() const { return _name; }
+    void setPlayerName(const std::string& name) { _name = name; }
 };
 
 
