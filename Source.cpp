@@ -8,7 +8,6 @@
 #include "Server.h"
 #include "engine/utils/Time.h"
 #include "engine/utils/Log.h"
-//#include "engine/Keyboard.h"
 #include "engine/Consts.h"
 
 using namespace std;
@@ -36,7 +35,6 @@ void InitServer(Server& server)
 
 int main() {
     Time::init();
-    //Keyboard keyboard;
     Server server{};
 
     Log::log("Initializing the server...");
@@ -44,28 +42,13 @@ int main() {
 
     double lastTryReconnecting = 0;
 
-    //if(server.isWorking())
-    //    std::cout << "Type 'q' to exit the server" << std::endl;
-    //std::cout << "Type 'r' to restart the server" << std::endl;
-
     while (true) {
-        //if(keyboard.isKeyTapped(sf::Keyboard::Key::Q)) {
-        //    Time::free();
-        //    break;
-        //}
-        //if(keyboard.isKeyTapped(sf::Keyboard::Key::R)) {
-        //    server.stop();
-        //    Log::log("Restarting the server...");
-        //    InitServer(server);
-        //}
-
         if(!server.isWorking() && (Time::time() - lastTryReconnecting > Consts::NETWORK_TIMEOUT)) {
             lastTryReconnecting = Time::time();
             server.stop();
             Log::log("Restarting the server...");
             InitServer(server);
         }
-
         Time::update();
         server.update();
     }

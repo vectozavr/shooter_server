@@ -139,31 +139,31 @@ void Server::processStop() {
 }
 
 void Server::generateBonuses() {
-    _bonuses.insert({"Bonus_gun_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-10, -2, -15), -2*_bonusRechargeTime, true})});
-    _bonuses.insert({"Bonus_gun_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(10, -2, 15), -2*_bonusRechargeTime, true})});
+    _bonuses.insert({"Bonus_gun_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-10, -2, -15), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
+    _bonuses.insert({"Bonus_gun_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(10, -2, 15), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
 
-    _bonuses.insert({"Bonus_shotgun_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-10, 13, -24), -2*_bonusRechargeTime, true})});
-    _bonuses.insert({"Bonus_shotgun_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(10, 13, 24), -2*_bonusRechargeTime, true})});
+    _bonuses.insert({"Bonus_shotgun_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-10, 13, -24), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
+    _bonuses.insert({"Bonus_shotgun_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(10, 13, 24), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
 
-    _bonuses.insert({"Bonus_ak47_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-25, 30, 50), -2*_bonusRechargeTime, true})});
-    _bonuses.insert({"Bonus_ak47_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(25, 30, -50), -2*_bonusRechargeTime, true})});
+    _bonuses.insert({"Bonus_ak47_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-25, 30, 50), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
+    _bonuses.insert({"Bonus_ak47_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(25, 30, -50), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
 
-    _bonuses.insert({"Bonus_gold_ak47_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-35, 80, 25), -2*_bonusRechargeTime, true})});
-    _bonuses.insert({"Bonus_gold_ak47_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(35, 80, -25), -2*_bonusRechargeTime, true})});
+    _bonuses.insert({"Bonus_gold_ak47_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-35, 80, 25), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
+    _bonuses.insert({"Bonus_gold_ak47_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(35, 80, -25), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
 
-    _bonuses.insert({"Bonus_rifle_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(40, -2, 45), -2*_bonusRechargeTime, true})});
-    _bonuses.insert({"Bonus_rifle_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-40, -2, -45), -2*_bonusRechargeTime, true})});
+    _bonuses.insert({"Bonus_rifle_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(40, -2, 45), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
+    _bonuses.insert({"Bonus_rifle_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-40, -2, -45), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
 
-    _bonuses.insert({"Bonus_hill_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-40, -2, 45), -2*_bonusRechargeTime, true})});
-    _bonuses.insert({"Bonus_hill_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(40, -2, -45), -2*_bonusRechargeTime, true})});
+    _bonuses.insert({"Bonus_hill_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-40, -2, 45), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
+    _bonuses.insert({"Bonus_hill_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(40, -2, -45), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
 
-    _bonuses.insert({"Bonus_ability_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(25, 18, -33), -2*_bonusRechargeTime, true})});
-    _bonuses.insert({"Bonus_ability_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-25, 18, 33), -2*_bonusRechargeTime, true})});
+    _bonuses.insert({"Bonus_ability_1", std::make_shared<BonusInfo>(BonusInfo{Vec3D(25, 18, -33), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
+    _bonuses.insert({"Bonus_ability_2", std::make_shared<BonusInfo>(BonusInfo{Vec3D(-25, 18, 33), -2*ShooterConsts::BONUS_RECHARGE_TIME, true})});
 }
 
 void Server::updateInfo() {
     for(auto& [bonusName, bonusInfo] : _bonuses) {
-        if(!bonusInfo->onTheMap && std::abs(Time::time() - bonusInfo->lastTake) > _bonusRechargeTime) {
+        if(!bonusInfo->onTheMap && std::abs(Time::time() - bonusInfo->lastTake) > ShooterConsts::BONUS_RECHARGE_TIME) {
             sf::Packet sendPacket;
             sendPacket << MsgType::AddBonus << bonusName << bonusInfo->position.x() << bonusInfo->position.y() << bonusInfo->position.z();
             for (const auto& player : _players)

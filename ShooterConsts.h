@@ -10,6 +10,7 @@
 namespace ShooterConsts {
     const double HEALTH_MAX = 100;
     const double ABILITY_MAX = 10;
+    const double BONUS_RECHARGE_TIME = 30;
 }
 
 #endif //SHOOTER_SHOOTERCONSTS_H
