@@ -57,8 +57,6 @@ int main() {
         Time::update();
         server.update();
 
-        Log::log("hi");
-
         sleep_for(20ms);
     }
 
