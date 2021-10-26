@@ -9,8 +9,13 @@
 #include "engine/utils/Time.h"
 #include "engine/utils/Log.h"
 #include "engine/Consts.h"
+#include <chrono>
+#include <thread>
 
 using namespace std;
+using namespace std::this_thread;     // sleep_for, sleep_until
+using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
+using std::chrono::system_clock;
 
 void InitServer(Server& server)
 {
@@ -51,6 +56,10 @@ int main() {
         }
         Time::update();
         server.update();
+
+        Log::log("hi");
+
+        sleep_for(20ms);
     }
 
     return 0;
