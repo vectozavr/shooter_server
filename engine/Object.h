@@ -11,12 +11,26 @@
 #include <utility>
 #include <memory>
 
+class ObjectNameTag final {
+private:
+    const std::string _name;
+public:
+    explicit ObjectNameTag(std::string name = "") : _name(std::move(name)) {}
+    [[nodiscard]] std::string str() const { return _name; }
+
+    bool operator==(const ObjectNameTag& tag) const { return _name == tag._name; }
+    bool operator!=(const ObjectNameTag& tag) const { return _name != tag._name; }
+    bool operator<(const ObjectNameTag& tag) const { return _name < tag._name; }
+};
+
 class Object {
+private:
+    const ObjectNameTag _nameTag;
 protected:
     std::unique_ptr<Vec3D> _position = std::make_unique<Vec3D>(Vec3D{0, 0, 0});
     std::unique_ptr<Vec3D> _angle = std::make_unique<Vec3D>(Vec3D{0, 0, 0});
 public:
-    Object() = default;
+    explicit Object(ObjectNameTag nameTag) : _nameTag(std::move(nameTag)) {};
 
     virtual void translate(const Vec3D& dv);
     virtual void translateToPoint(const Vec3D& point);

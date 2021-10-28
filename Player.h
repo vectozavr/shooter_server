@@ -21,9 +21,9 @@ private:
     int _kills = 0;
     int _deaths = 0;
 
-    std::string _name = ShooterConsts::PLAYER_NAME;
+    std::string _nickName = ShooterConsts::PLAYER_NAME;
 public:
-    Player() = default;
+    explicit Player(ObjectNameTag nameTag) : RigidBody(std::move(nameTag)) {}
 
     void setHealth(double h) { _health = h; }
     void setAbility(double a) { _ability = a; }
@@ -48,8 +48,8 @@ public:
     void setHeadAngle(double a) { _headAngle = a; }
     [[nodiscard]] double headAngle() const { return _headAngle; };
 
-    [[nodiscard]] std::string playerName() const { return _name; }
-    void setPlayerName(const std::string& name) { _name = name; }
+    [[nodiscard]] std::string playerNickName() const { return _nickName; }
+    void setPlayerNickName(const std::string& name) { _nickName = name; }
 };
 
 

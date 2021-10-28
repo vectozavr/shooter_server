@@ -5,6 +5,7 @@
 #ifndef ENGINE_RIGIDBODY_H
 #define ENGINE_RIGIDBODY_H
 
+#include <utility>
 #include <vector>
 #include <memory>
 #include <functional>
@@ -12,7 +13,7 @@
 
 class RigidBody : public Mesh {
 public:
-    RigidBody() = default;
+    explicit RigidBody(ObjectNameTag nameTag) : Mesh(std::move(nameTag)) {};
 
     ~RigidBody() override = default;
 };

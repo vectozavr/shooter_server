@@ -10,9 +10,11 @@ add_executable(shooter_server
         Source.cpp
         Player.cpp
         Player.h
-        Server.cpp
-        Server.h
+        ShooterServer.cpp
+        ShooterServer.h
         ShooterConsts.h
+        ShooterMsgType.cpp
+        ShooterMsgType.h
         # 3d engine:
         engine/Consts.h
         engine/Vec3D.cpp

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <utility>
 #include <iostream>
-#include "Server.h"
+#include "ShooterServer.h"
 #include "engine/utils/Time.h"
 #include "engine/utils/Log.h"
 #include "engine/Consts.h"
@@ -17,7 +17,7 @@ using namespace std::this_thread;     // sleep_for, sleep_until
 using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
 using std::chrono::system_clock;
 
-void InitServer(Server& server)
+void InitServer(ShooterServer& server)
 {
     sf::Uint16 serverPort;
     std::ifstream connectFile("server.txt", std::ifstream::in);
@@ -40,7 +40,7 @@ void InitServer(Server& server)
 
 int main() {
     Time::init();
-    Server server{};
+    ShooterServer server{};
 
     Log::log("Initializing the server...");
     InitServer(server);

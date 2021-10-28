@@ -5,13 +5,14 @@
 #ifndef ENGINE_MESH_H
 #define ENGINE_MESH_H
 
+#include <utility>
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "Object.h"
 
 class Mesh : public Object {
 public:
-    Mesh() = default;
+    explicit Mesh(ObjectNameTag nameTag) : Object(std::move(nameTag)) {};
     ~Mesh() override = default;
 };
 

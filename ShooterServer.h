@@ -14,12 +14,12 @@ struct BonusInfo final {
     const bool onTheMap = false;
 };
 
-class Server final : public ServerUDP {
+class ShooterServer final : public ServerUDP {
 private:
     std::map<sf::Uint16, std::shared_ptr<Player>> _players{};
     std::map<std::string, std::shared_ptr<BonusInfo>> _bonuses{};
 public:
-    Server() = default;
+    ShooterServer() = default;
 
     void broadcast() override;
 
@@ -27,7 +27,7 @@ public:
     void processClientUpdate(sf::Uint16 senderId, sf::Packet& packet) override;
     void processDisconnect(sf::Uint16 senderId) override;
 
-    void processCustomPacket(MsgType type, sf::Packet& packet, sf::Uint16 senderId) override;
+    void processCustomPacket(sf::Packet& packet, sf::Uint16 senderId) override;
 
     void processStop() override;
 
@@ -35,7 +35,7 @@ public:
 
     void updateInfo() override;
 
-    ~Server() override;
+    ~ShooterServer() override;
 };
 
 
