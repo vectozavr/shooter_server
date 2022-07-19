@@ -33,5 +33,3 @@ Playing with source code:
    Using [Visual Studio](https://visualstudio.microsoft.com/ru/): open <b>shooter.sln</b> as a project
 
 3) Built project and run the server
-
-P/S: <b>SFML for 32-bit OS Windows is already included into this repository.</b> So, you don't need to manually install it to your computer. If you have any problems with SFML, you can try to [download another version or build SFML by yourself.](https://www.sfml-dev.org/download.php)
