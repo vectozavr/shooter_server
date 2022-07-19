@@ -45,6 +45,8 @@ int main() {
     Log::log("Initializing the server...");
     InitServer(server);
 
+    std::cout << "Server started!" << std::endl;
+
     double lastTryReconnecting = 0;
 
     while (true) {
