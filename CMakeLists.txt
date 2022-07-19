@@ -10,11 +10,11 @@ add_executable(shooter_server
         Source.cpp
         Player.cpp
         Player.h
-        ShooterServer.cpp
-        ShooterServer.h
+        network/ShooterServer.cpp
+        network/ShooterServer.h
         ShooterConsts.h
-        ShooterMsgType.cpp
-        ShooterMsgType.h
+        network/ShooterMsgType.cpp
+        network/ShooterMsgType.h
         # 3d engine:
         engine/Consts.h
         engine/Vec3D.cpp
@@ -42,7 +42,7 @@ add_executable(shooter_server
 if(APPLE OR UNIX)
     include_directories(/usr/local/include)
 else()
-    set(SFML_DIR "SFML-mingw32/lib/cmake/SFML")
+    set(SFML_DIR "C:/Libraries/SFML/lib/cmake/SFML")
     set(SFML_STATIC_LIBRARIES TRUE)
 endif()
 

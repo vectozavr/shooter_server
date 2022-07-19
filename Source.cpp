@@ -5,7 +5,7 @@
 #include <fstream>
 #include <utility>
 #include <iostream>
-#include "ShooterServer.h"
+#include "network/ShooterServer.h"
 #include "engine/utils/Time.h"
 #include "engine/utils/Log.h"
 #include "engine/Consts.h"
