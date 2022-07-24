@@ -141,6 +141,8 @@ void ShooterServer::processCustomPacket(sf::Packet& packet, sf::Uint16 senderId)
         case ShooterMsgType::newMessage:
             packet >> tmp;//message
             sendPacket << MsgType::Custom << ShooterMsgType::newMessage << _players[senderId]->playerNickName() << tmp;
+            if (tmp.length() == 0)
+                break;
             for (auto& player : _players) {
                 if (player.first != senderId) {
                     _socket.send(sendPacket, player.first);

@@ -15,8 +15,6 @@ add_executable(shooter_server
         ShooterConsts.h
         network/ShooterMsgType.cpp
         network/ShooterMsgType.h
-        network/Chat.cpp
-        network/Chat.h
         # 3d engine:
         engine/Consts.h
         engine/Vec3D.cpp
